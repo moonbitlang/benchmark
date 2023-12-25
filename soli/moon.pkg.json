@@ -1,0 +1,6 @@
+{
+  "is_main": true,
+  "import": {
+    "benchmark/lib": ""
+  }
+}
