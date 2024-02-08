@@ -1,7 +1,7 @@
 fn qsort(lo : Int, hi : Int, a : Array[Int]) {
   if lo < hi {
-    var i = lo
-    var j = hi
+    let mut i = lo
+    let mut j = hi
     let pivot = a[hi]
     while i < j {
       while i < hi && a[i] <= pivot {
@@ -30,8 +30,8 @@ fn cmp(a : Int, b : Int) -> Int {
 
 fn qsort2(lo : Int, hi : Int, a : Array[Int]) {
   if lo < hi {
-    var i = lo
-    var j = hi
+    let mut i = lo
+    let mut j = hi
     let pivot = a[hi]
     while i < j {
       while i < hi && cmp(a[i], pivot) <= 0 {
@@ -55,7 +55,7 @@ fn qsort2(lo : Int, hi : Int, a : Array[Int]) {
 }
 
 fn test_sort(sort : (Int, Int, Array[Int]) -> Unit, size : Int) -> Bool {
-  var seed = 0
+  let mut seed = 0
   fn random() {
     seed = seed * 25173 + 17431
     seed.land(0xfff)
@@ -63,24 +63,24 @@ fn test_sort(sort : (Int, Int, Array[Int]) -> Unit, size : Int) -> Bool {
 
   let a = Array::make(size, 0)
   let check = Array::make(4096, 0)
-  var i = 0
+  let mut i = 0
   while i < size, i = i + 1 {
     let x = random()
     check[x] = check[x] + 1
     a[i] = x
   }
   sort(0, size - 1, a)
-  var i = 0
+  let mut i = 0
   while i < size, i = i + 1 {
     check[a[i]] = check[a[i]] - 1
   }
-  var i = 1
+  let mut i = 1
   while i < size, i = i + 1 {
     if a[i - 1] > a[i] {
       return false
     }
   }
-  var i = 0
+  let mut i = 0
   while i < 4096, i = i + 1 {
     if check[i] != 0 {
       return false

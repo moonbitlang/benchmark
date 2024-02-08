@@ -15,27 +15,27 @@ let pi = 3.14159265358979323846
 let tpi : Double = 2.0 * pi
 
 fn fft(px : Array[Double], py : Array[Double], np : Int) {
-  var i = 2
-  var m = 1
+  let mut i = 2
+  let mut m = 1
   while i < np {
     i = i + i
     m = m + 1
   }
   let n = i
   if n != np {
-    var i = np + 1
+    let mut i = np + 1
     while i <= n, i = i + 1 {
       px[i] = 0.0
       py[i] = 0.0
     }
   }
-  var n2 = n + n
-  var i = 1
+  let mut n2 = n + n
+  let mut i = 1
   while i <= m - 1, i = i + 1 {
     n2 = n2 / 2
     let n4 = n2 / 4
     let e = tpi / n2.to_double()
-    var j = 1
+    let mut j = 1
     while j <= n4, j = j + 1 {
       let a = e * (j - 1).to_double()
       let a3 = 3.0 * a
@@ -43,10 +43,10 @@ fn fft(px : Array[Double], py : Array[Double], np : Int) {
       let ss1 = sin(a)
       let cc3 = cos(a3)
       let ss3 = sin(a3)
-      var is = j
-      var id = 2 * n2
+      let mut is = j
+      let mut id = 2 * n2
       while is < n {
-        var i0r = is
+        let mut i0r = is
         while i0r < n {
           let i0 = i0r
           let i1 = i0 + n4
@@ -75,10 +75,10 @@ fn fft(px : Array[Double], py : Array[Double], np : Int) {
       }
     }
   }
-  var is = 1
-  var id = 4
+  let mut is = 1
+  let mut id = 4
   while is < n {
-    var i0r = is
+    let mut i0r = is
     while i0r <= n {
       let i0 = i0r
       let i1 = i0 + 1
@@ -93,8 +93,8 @@ fn fft(px : Array[Double], py : Array[Double], np : Int) {
     is = 2 * id - 1
     id = 4 * id
   }
-  var j = 1
-  var i = 1
+  let mut j = 1
+  let mut i = 1
   while i <= n - 1, i = i + 1 {
     if i < j {
       let xt = px[j]
@@ -104,7 +104,7 @@ fn fft(px : Array[Double], py : Array[Double], np : Int) {
       py[j] = py[i]
       py[i] = xt
     }
-    var k = n / 2
+    let mut k = n / 2
     while k < j {
       j = j - k
       k = k / 2
@@ -124,7 +124,7 @@ fn test(np : Int) {
   let n2 = np / 2
   pxr[n2 + 1] = -0.5
   pxi[n2 + 1] = 0.0
-  var i = 1
+  let mut i = 1
   while i <= npm, i = i + 1 {
     let j = np - i
     pxr[i + 1] = -0.5
@@ -135,11 +135,11 @@ fn test(np : Int) {
     pxi[j + 1] = -y
   }
   fft(pxr, pxi, np)
-  var zr = 0.0
-  var zi = 0.0
-  var kr = 0
-  var ki = 0
-  var i = 0
+  let mut zr = 0.0
+  let mut zi = 0.0
+  let mut kr = 0
+  let mut ki = 0
+  let mut i = 0
   while i < np, i = i + 1 {
     let a = abs(pxr[i + 1] - i.to_double())
     if zr < a {
@@ -156,8 +156,8 @@ fn test(np : Int) {
 }
 
 fn init {
-  var np = 16
-  var i = 1
+  let mut np = 16
+  let mut i = 1
   while i <= 16, i = i + 1 {
     test(np)
     np = np * 2

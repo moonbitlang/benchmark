@@ -32,12 +32,12 @@ fn solve(m : Int) -> Bool {
   if m == 31 {
     return board[4][4] == Peg
   } else {
-    var i = 1
+    let mut i = 1
     while i <= 7 {
-      var j = 1
+      let mut j = 1
       while j <= 7 {
         if board[i][j] == Peg {
-          var k = 0
+          let mut k = 0
           while k <= 3 {
             let dx = direction[k].dx
             let dy = direction[k].dy
@@ -69,7 +69,7 @@ fn solve(m : Int) -> Bool {
 
 fn init {
   @lib.assert(solve(0))
-  var i = 0
+  let mut i = 0
   while i < 9 {
     debug(board[i])
     i = i + 1
