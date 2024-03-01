@@ -23,20 +23,17 @@ fn fft(px : Array[Double], py : Array[Double], np : Int) {
   }
   let n = i
   if n != np {
-    let mut i = np + 1
-    while i <= n, i = i + 1 {
+    for i = np + 1; i <= n; i = i + 1 {
       px[i] = 0.0
       py[i] = 0.0
     }
   }
   let mut n2 = n + n
-  let mut i = 1
-  while i <= m - 1, i = i + 1 {
+  for i = 1; i <= m - 1; i = i + 1 {
     n2 = n2 / 2
     let n4 = n2 / 4
     let e = tpi / n2.to_double()
-    let mut j = 1
-    while j <= n4, j = j + 1 {
+    for j = 1; j <= n4; j = j + 1 {
       let a = e * (j - 1).to_double()
       let a3 = 3.0 * a
       let cc1 = cos(a)
@@ -94,8 +91,7 @@ fn fft(px : Array[Double], py : Array[Double], np : Int) {
     id = 4 * id
   }
   let mut j = 1
-  let mut i = 1
-  while i <= n - 1, i = i + 1 {
+  for i = 1; i <= n - 1; i = i + 1 {
     if i < j {
       let xt = px[j]
       px[j] = px[i]
@@ -113,7 +109,7 @@ fn fft(px : Array[Double], py : Array[Double], np : Int) {
   }
 }
 
-fn test(np : Int) {
+fn test_(np : Int) {
   let enp = np.to_double()
   let npm = np / 2 - 1
   let pxr = Array::make(np + 2, 0.0)
@@ -124,8 +120,7 @@ fn test(np : Int) {
   let n2 = np / 2
   pxr[n2 + 1] = -0.5
   pxi[n2 + 1] = 0.0
-  let mut i = 1
-  while i <= npm, i = i + 1 {
+  for i = 1; i <= npm; i = i + 1 {
     let j = np - i
     pxr[i + 1] = -0.5
     pxr[j + 1] = -0.5
@@ -139,8 +134,7 @@ fn test(np : Int) {
   let mut zi = 0.0
   let mut kr = 0
   let mut ki = 0
-  let mut i = 0
-  while i < np, i = i + 1 {
+  for i = 0; i < np; i = i + 1 {
     let a = abs(pxr[i + 1] - i.to_double())
     if zr < a {
       zr = a
@@ -157,9 +151,8 @@ fn test(np : Int) {
 
 fn init {
   let mut np = 16
-  let mut i = 1
-  while i <= 16, i = i + 1 {
-    test(np)
+  for i = 1; i <= 16; i = i + 1 {
+    test_(np)
     np = np * 2
   }
 }

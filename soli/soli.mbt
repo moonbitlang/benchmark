@@ -2,7 +2,7 @@ enum Peg {
   Out
   Emp
   Peg
-} derive(Eq, Debug)
+} derive(Eq)
 
 let board : Array[Array[Peg]] = [
   [Out, Out, Out, Out, Out, Out, Out, Out, Out],
@@ -69,9 +69,4 @@ fn solve(m : Int) -> Bool {
 
 fn init {
   @lib.assert(solve(0))
-  let mut i = 0
-  while i < 9 {
-    debug(board[i])
-    i = i + 1
-  }
 }

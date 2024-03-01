@@ -63,25 +63,21 @@ fn test_sort(sort : (Int, Int, Array[Int]) -> Unit, size : Int) -> Bool {
 
   let a = Array::make(size, 0)
   let check = Array::make(4096, 0)
-  let mut i = 0
-  while i < size, i = i + 1 {
+  for i = 0; i < size; i = i + 1 {
     let x = random()
     check[x] = check[x] + 1
     a[i] = x
   }
   sort(0, size - 1, a)
-  let mut i = 0
-  while i < size, i = i + 1 {
+  for i = 0; i < size; i = i + 1 {
     check[a[i]] = check[a[i]] - 1
   }
-  let mut i = 1
-  while i < size, i = i + 1 {
+  for i = 1; i < size; i = i + 1 {
     if a[i - 1] > a[i] {
       return false
     }
   }
-  let mut i = 0
-  while i < 4096, i = i + 1 {
+  for i = 0; i < 4096; i = i + 1 {
     if check[i] != 0 {
       return false
     }
